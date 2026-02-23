@@ -160,7 +160,7 @@ elif ebit_filter == "Negative (<0)":
     filtered = filtered[filtered["EV/EBITDA"] < 0]
 elif ebit_filter == "Low (<15)":
     filtered = filtered[filtered["EV/EBITDA"] < 15]
-elif ebit_filter == "High (>10)":
+elif ebit_filter == "High (>50)":
     filtered = filtered[filtered["EV/EBITDA"] > 50]
 
 if prof_filter == "Postive (>0)":
