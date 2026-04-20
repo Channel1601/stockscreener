@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HB Stock Screener — Rigorous screening for the S&P 500</title>
+  <title>HB Stock Screener</title>
 
   <meta name="description" content="An interactive stock screener for the S&P 500. Filter by valuation, margins, growth, and balance-sheet strength. Built with Python & Streamlit.">
   <meta property="og:title" content="HB Stock Screener">
@@ -14,9 +14,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E0E0C'/%3E%3Ctext x='50%25' y='55%25' font-family='serif' font-style='italic' font-size='22' fill='%23E8A84B' text-anchor='middle' dominant-baseline='middle'%3Eh%3C/text%3E%3C/svg%3E">
-
   <style>
     :root {
       --bg: #0E0E0C;
@@ -28,7 +25,7 @@
       --fg: #F4EFE6;
       --fg-muted: #8C877D;
       --fg-dim: #5A5750;
-      --accent: #E8A84B;
+      --accent: #c99d5c;
       --accent-soft: rgba(232, 168, 75, 0.12);
       --up: #8FE07E;
       --down: #F07A6A;
@@ -808,55 +805,10 @@
 </head>
 <body>
 
-  <!-- Ticker tape -->
-  <div class="ticker-bar" aria-hidden="true">
-    <div class="ticker-track">
-      <span class="tk"><span class="s">AAPL</span><span class="p">194.27</span><span class="c up">+1.24%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">MSFT</span><span class="p">417.13</span><span class="c up">+0.87%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">NVDA</span><span class="p">112.39</span><span class="c dn">−2.15%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">GOOGL</span><span class="p">164.88</span><span class="c up">+0.42%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">AMZN</span><span class="p">181.74</span><span class="c up">+1.67%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">META</span><span class="p">502.18</span><span class="c dn">−0.34%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">BRK.B</span><span class="p">411.92</span><span class="c up">+0.12%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">JPM</span><span class="p">208.47</span><span class="c up">+0.73%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">TSLA</span><span class="p">243.18</span><span class="c dn">−1.82%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">V</span><span class="p">275.93</span><span class="c up">+0.24%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">UNH</span><span class="p">524.11</span><span class="c dn">−0.91%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">XOM</span><span class="p">118.62</span><span class="c up">+1.38%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">LLY</span><span class="p">827.14</span><span class="c up">+2.46%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">MA</span><span class="p">466.79</span><span class="c up">+0.58%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">AVGO</span><span class="p">1702.44</span><span class="c dn">−0.62%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">COST</span><span class="p">879.04</span><span class="c up">+0.31%</span></span><span class="tk-sep">·</span>
-      <!-- duplicate for seamless loop -->
-      <span class="tk"><span class="s">AAPL</span><span class="p">194.27</span><span class="c up">+1.24%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">MSFT</span><span class="p">417.13</span><span class="c up">+0.87%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">NVDA</span><span class="p">112.39</span><span class="c dn">−2.15%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">GOOGL</span><span class="p">164.88</span><span class="c up">+0.42%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">AMZN</span><span class="p">181.74</span><span class="c up">+1.67%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">META</span><span class="p">502.18</span><span class="c dn">−0.34%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">BRK.B</span><span class="p">411.92</span><span class="c up">+0.12%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">JPM</span><span class="p">208.47</span><span class="c up">+0.73%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">TSLA</span><span class="p">243.18</span><span class="c dn">−1.82%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">V</span><span class="p">275.93</span><span class="c up">+0.24%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">UNH</span><span class="p">524.11</span><span class="c dn">−0.91%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">XOM</span><span class="p">118.62</span><span class="c up">+1.38%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">LLY</span><span class="p">827.14</span><span class="c up">+2.46%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">MA</span><span class="p">466.79</span><span class="c up">+0.58%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">AVGO</span><span class="p">1702.44</span><span class="c dn">−0.62%</span></span><span class="tk-sep">·</span>
-      <span class="tk"><span class="s">COST</span><span class="p">879.04</span><span class="c up">+0.31%</span></span><span class="tk-sep">·</span>
-    </div>
-  </div>
-
   <nav>
     <div class="nav-inner">
       <div class="logo">
-        <div class="logo-mark">HB</div>
-        <div class="logo-text">Stock <i>Screener</i></div>
-      </div>
-      <div class="nav-links">
-        <a href="#metrics">Filters</a>
-        <a href="#how">Process</a>
-        <a href="#about">Notes</a>
+        <div class="logo-text"> <i>HB</i> Stock Screener</div>
       </div>
       <a href="https://hbstockscreener.streamlit.app/" class="btn" target="_blank" rel="noopener">
         Launch <span class="arrow">→</span>
@@ -869,16 +821,12 @@
     <div class="hero-text">
       <div class="hero-label reveal">
         <span>Live · S&amp;P 500 coverage</span>
-        <span class="sep">/</span>
-        <span>No. 01 — Edition 2026</span>
       </div>
       <h1 class="reveal d1">
         Screen the market
-        <span class="break">with the <i>rigor</i></span>
-        <span class="break">of a research desk.</span>
       </h1>
       <p class="lede reveal d2">
-        Twelve fundamental filters applied across 503 S&amp;P 500 names. Valuation, margins, leverage, and growth — in one disciplined view, backed by live market data.
+        Twelve fundamental filters applied across all S&amp;P 500 names. Valuation, margins, leverage, and growth in one view, backed by live market data.
       </p>
       <div class="hero-ctas reveal d2">
         <a href="https://hbstockscreener.streamlit.app/" class="btn btn-lg" target="_blank" rel="noopener">
@@ -887,7 +835,7 @@
         <a href="#metrics" class="btn btn-lg btn-ghost">What it filters</a>
       </div>
       <div class="hero-stats reveal d3">
-        <div class="stat"><div class="v">503</div><div class="l">Names covered</div></div>
+        <div class="stat"><div class="v">500+</div><div class="l">Names covered</div></div>
         <div class="stat"><div class="v">12</div><div class="l">Filter dimensions</div></div>
         <div class="stat"><div class="v">25<sup>yrs</sup></div><div class="l">Historical depth</div></div>
       </div>
@@ -953,7 +901,7 @@
 
       <div class="float-card top">
         <div class="fl-l">Universe narrowed</div>
-        <div class="fl-v">503 → <b>7</b> matches</div>
+        <div class="fl-v">500 → <b>7</b> matches</div>
       </div>
       <div class="float-card bot">
         <div class="fl-l">Running since</div>
@@ -965,183 +913,96 @@
   <!-- Metrics / filters -->
   <section id="metrics">
     <div class="container">
-      <div class="section-label reveal">// 01 — Filter dimensions</div>
-      <h2 class="section-title reveal d1">Twelve fundamentals. <i>One</i> coherent view.</h2>
+      <div class="section-label reveal">// Filters</div>
+      <h2 class="section-title reveal d1">The Twelve Fundamentals.</h2>
       <p class="section-sub reveal d2">Combine valuation, profitability, and balance-sheet filters to isolate the handful of names that actually deserve attention.</p>
 
       <div class="metrics reveal d2">
         <div class="metric">
           <div class="metric-key"><span>01</span><span class="sym">P/E</span></div>
           <div class="metric-name">Price to <i>Earnings</i></div>
-          <div class="metric-desc">Find the undervalued, the profitable, or the unmistakably expensive — in one glance.</div>
-          <div class="metric-range">Preset filters · <b>Low &lt;15</b> · <b>High &gt;50</b></div>
+          <div class="metric-desc">Price-to-earnings ratio showing how much investors pay for each dollar of a company’s earnings.</div>
+          <div class="metric-range">Preset filters · <b>Low &lt;15</b> · <b>Profitable &gt;0 </b> . <b>High &gt;50</b></div>
         </div>
         <div class="metric">
           <div class="metric-key"><span>02</span><span class="sym">EPS</span></div>
           <div class="metric-name">Earnings <i>per share</i></div>
-          <div class="metric-desc">The bottom line, split across the float. Raw evidence of profitability per owner.</div>
-          <div class="metric-range">Preset filters · <b>Positive</b> · <b>Very High &gt;25</b></div>
+          <div class="metric-desc">Earnings per share, the portion of a company’s profit allocated to each outstanding share.</div>
+          <div class="metric-range">Preset filters · <b>Positive</b> · <b>Negative</b> · <b>0-10</b> · <b> &gt;25</b></div>
         </div>
         <div class="metric">
           <div class="metric-key"><span>03</span><span class="sym">EV/S</span></div>
           <div class="metric-name">EV to <i>Sales</i></div>
-          <div class="metric-desc">Size the enterprise against the top line. A cleaner read than P/S in leveraged names.</div>
-          <div class="metric-range">Preset filters · <b>Low &lt;1</b> · <b>High &gt;10</b></div>
+          <div class="metric-desc">Enterprise value divided by revenue, measuring total company value relative to sales.</div>
+          <div class="metric-range">Preset filters ·  <b>&gt;0</b> · <b>&lt;0</b> . <b>Low &lt;1</b> · <b>High &gt;10</b></div>
         </div>
 
         <div class="metric">
           <div class="metric-key"><span>04</span><span class="sym">ROE</span></div>
           <div class="metric-name">Return on <i>Equity</i></div>
-          <div class="metric-desc">The compounding engine. Separates capital-efficient operators from the capital-hungry.</div>
-          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&gt;30%</b> · <b>&lt;−15%</b></div>
+          <div class="metric-desc">Return on equity, showing how efficiently a company generates profit from shareholders’ equity.</div>
+          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&lt;0</b> · <b>&gt;30</b> · <b>&lt;−15</b></div>
         </div>
         <div class="metric">
           <div class="metric-key"><span>05</span><span class="sym">D/E</span></div>
           <div class="metric-name">Debt to <i>Equity</i></div>
-          <div class="metric-desc">Measure the aggression of the balance sheet before the next rate cycle tests it.</div>
+          <div class="metric-desc">Total debt divided by shareholders’ equity, indicating financial leverage.</div>
           <div class="metric-range">Preset filters · <b>&lt;10</b> · <b>&lt;100</b> · <b>&gt;50</b></div>
         </div>
         <div class="metric">
-          <div class="metric-key"><span>06</span><span class="sym">β</span></div>
+          <div class="metric-key"><span>06</span><span class="sym">Beta</span></div>
           <div class="metric-name"><i>Beta</i></div>
-          <div class="metric-desc">How tightly a name tracks — or defies — the broader market tape.</div>
-          <div class="metric-range">Filters · <b>&lt;1</b> · <b>&gt;1</b></div>
+          <div class="metric-desc">Measure of a stock’s volatility relative to the overall market.</div>
+          <div class="metric-range">Filters ·  <b>&gt;0</b> · <b>&lt;0</b> . <b>&lt;1</b> · <b>&gt;1</b></div>
         </div>
 
         <div class="metric">
           <div class="metric-key"><span>07</span><span class="sym">DY</span></div>
           <div class="metric-name"><i>Dividend</i> yield</div>
-          <div class="metric-desc">Isolate the income stream from the principal thesis.</div>
-          <div class="metric-range">Filters · <b>&gt;0</b> · <b>&gt;5%</b></div>
+          <div class="metric-desc">Dividends per share divided by price showing income return from dividends.</div>
+          <div class="metric-range">Filters · <b>0</b> . <b>&gt;0</b> · <b>&gt;5</b> . <b>&gt;10</b></div>
         </div>
         <div class="metric">
           <div class="metric-key"><span>08</span><span class="sym">RG</span></div>
           <div class="metric-name">Revenue <i>growth</i></div>
-          <div class="metric-desc">Find the businesses that are actually compounding the top line — not just holding it.</div>
-          <div class="metric-range">Preset filters · <b>Positive</b> · <b>0–10%</b> · <b>&gt;25%</b></div>
+          <div class="metric-desc">Total percentage increase in a given company’s sales over a certain period of time.</div>
+          <div class="metric-range">Preset filters · <b>Positive</b> · <b>0–10</b> · <b>&gt;25</b></div>
         </div>
         <div class="metric">
           <div class="metric-key"><span>09</span><span class="sym">PM</span></div>
           <div class="metric-name">Profit <i>margin</i></div>
-          <div class="metric-desc">What actually survives after every line item. The acid test of operating quality.</div>
-          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&gt;20%</b> · <b>&lt;−20%</b></div>
+          <div class="metric-desc">Net income divided by revenue, showing how much profit is kept from each dollar of sales.</div>
+          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&gt;20</b> · <b>&lt;−20</b></div>
+        </div>
+          <div class="metric">
+          <div class="metric-key"><span>10</span><span class="sym">GM</span></div>
+          <div class="metric-name">Gross <i>margin</i></div>
+          <div class="metric-desc">Revenue minus cost of goods sold divided by revenue, showing profitability before operating expenses.</div>
+          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&gt;20</b> · <b>&lt;−20</b></div>
+        </div>
+          <div class="metric">
+          <div class="metric-key"><span>11</span><span class="sym">EV/EBITDA</span></div>
+          <div class="metric-name">EV<i>/</i> EBITDA</div>
+          <div class="metric-desc">Enterprise value divided by EBITDA, valuing the company relative to operating cash earnings.</div>
+          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&gt;20</b> · <b>&lt;−20</b></div>
+        </div>
+          <div class="metric">
+          <div class="metric-key"><span>12</span><span class="sym">CR</span></div>
+          <div class="metric-name">Current <i>Ratio</i></div>
+          <div class="metric-desc">Current assets divided by current liabilities, measuring short-term liquidity.</div>
+          <div class="metric-range">Preset filters · <b>&gt;0</b> · <b>&gt;20</b> · <b>&lt;−20</b></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Anatomy -->
-  <section class="anatomy" id="how">
-    <div class="container">
-      <div class="section-label reveal">// 02 — Process</div>
-      <h2 class="section-title reveal d1">From ticker selection to <i>thesis</i> in four deliberate clicks.</h2>
-      <p class="section-sub reveal d2">No setup. No API keys. Open the app, pick a name, and start asking real questions of the data.</p>
-
-      <div class="anatomy-grid">
-        <div class="steps reveal d1">
-          <div class="step">
-            <div class="step-num">/ 01</div>
-            <div>
-              <div class="step-title">Pick a ticker, set the window</div>
-              <div class="step-desc">Search 503 S&amp;P 500 listings. Choose a date range that stretches back to 2000 — or narrow it to the last earnings cycle.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">/ 02</div>
-            <div>
-              <div class="step-title">Read the price action</div>
-              <div class="step-desc">A closing-price chart renders immediately. Axes are clean, data is live, and the read is unambiguous.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">/ 03</div>
-            <div>
-              <div class="step-title">Apply the filters that matter</div>
-              <div class="step-desc">Combine valuation, growth, margins, and leverage. The universe narrows in real time — from 503 down to a handful.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">/ 04</div>
-            <div>
-              <div class="step-title">Export the thesis-ready table</div>
-              <div class="step-desc">What remains is a sorted table you can read, copy, and defend — built on fundamentals, not vibes.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="chart-panel reveal d2">
-          <div class="ticker-head">
-            <div>
-              <div class="t-sym">AAPL</div>
-              <div class="t-name">Apple Inc · Closing Price</div>
-            </div>
-            <div>
-              <div class="t-price">194.27</div>
-              <div class="t-chg">+62.8% / 4y</div>
-            </div>
-          </div>
-
-          <svg class="chart-svg" viewBox="0 0 600 200" preserveAspectRatio="none" role="img" aria-label="Sample closing price chart">
-            <defs>
-              <linearGradient id="areaGrad" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0" stop-color="#E8A84B" stop-opacity="0.35"/>
-                <stop offset="1" stop-color="#E8A84B" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <g class="chart-grid">
-              <line x1="0" y1="40" x2="600" y2="40"/>
-              <line x1="0" y1="100" x2="600" y2="100"/>
-              <line x1="0" y1="160" x2="600" y2="160"/>
-            </g>
-            <path d="M0,150 L20,145 L40,155 L60,135 L80,140 L100,130 L120,115 L140,110 L160,100 L180,105 L200,95 L220,85 L240,90 L260,80 L280,75 L300,82 L320,70 L340,75 L360,65 L380,60 L400,68 L420,62 L440,55 L460,60 L480,50 L500,55 L520,48 L540,52 L560,45 L580,50 L600,45 L600,200 L0,200 Z" fill="url(#areaGrad)"/>
-            <polyline points="0,150 20,145 40,155 60,135 80,140 100,130 120,115 140,110 160,100 180,105 200,95 220,85 240,90 260,80 280,75 300,82 320,70 340,75 360,65 380,60 400,68 420,62 440,55 460,60 480,50 500,55 520,48 540,52 560,45 580,50 600,45" fill="none" stroke="#E8A84B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-            <circle cx="600" cy="45" r="3" fill="#E8A84B"/>
-            <circle cx="600" cy="45" r="6" fill="#E8A84B" opacity="0.2"/>
-            <text x="8" y="36" class="chart-axis-label">220</text>
-            <text x="8" y="96" class="chart-axis-label">160</text>
-            <text x="8" y="156" class="chart-axis-label">100</text>
-          </svg>
-
-          <div class="chart-stats">
-            <div>
-              <div class="cs-l">52w High</div>
-              <div class="cs-v">214.18</div>
-            </div>
-            <div>
-              <div class="cs-l">52w Low</div>
-              <div class="cs-v">142.64</div>
-            </div>
-            <div>
-              <div class="cs-l">P/E (ttm)</div>
-              <div class="cs-v">29.4</div>
-            </div>
-            <div>
-              <div class="cs-l">Div Yield</div>
-              <div class="cs-v up">0.52%</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta" id="about">
-    <h2 class="reveal">Built for analysts who <i>show</i> their work.</h2>
-    <p class="reveal d1">No dashboards to configure. No accounts to create. Open the screener, apply your filters, and defend a position with the numbers in front of you.</p>
-    <a href="https://hbstockscreener.streamlit.app/" class="btn btn-lg reveal d2" target="_blank" rel="noopener">
-      Open the screener <span class="arrow">→</span>
-    </a>
-  </section>
-
-  <footer>
+   <footer>
     <div class="footer-inner">
       <div class="built">Built with <span>Python</span> · <span>Streamlit</span> · <span>yfinance</span></div>
-      <div class="center">HB · An independent research tool</div>
+      <div class="center">Solo Project by Harmandeep Bhatia</div>
       <div class="links">
         <a href="https://hbstockscreener.streamlit.app/" target="_blank" rel="noopener">Launch</a>
         <a href="#metrics">Filters</a>
-        <a href="#how">Process</a>
       </div>
     </div>
   </footer>

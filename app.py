@@ -108,16 +108,16 @@ if roe_filter == "Postive (>0)":
     filtered = filtered[filtered["ROE"] > 0]
 elif roe_filter == "Negative (<0)":
     filtered = filtered[filtered["ROE"] < 0]
-elif roe_filter == "very Positive (>30%)":
+elif roe_filter == "Very Positive (>30)":
     filtered = filtered[filtered["ROE"] > 0.30]
-elif roe_filter == "Very Negative (<-15%)":
+elif roe_filter == "Very Negative (<-15)":
     filtered = filtered[filtered["ROE"] < -0.15]
 
 if cr_filter == "Low (<1)":
     filtered = filtered[filtered["Current Ratio"] < 1]
 elif cr_filter == "High (>1)":
     filtered = filtered[filtered["Current Ratio"] > 1]
-elif cr_filter == "very High (>3)":
+elif cr_filter == "Very High (>3)":
     filtered = filtered[filtered["Current Ratio"] > 3]
 
 if dte_filter == "Low (<10)":
